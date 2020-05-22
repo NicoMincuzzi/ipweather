@@ -1,7 +1,10 @@
 package com.chili.pockotlin.controller
 
+import com.chili.pockotlin.java.model.User
 import com.chili.pockotlin.model.BookModel
+
 import com.chili.pockotlin.representation.BookRepresentation
+import com.chili.pockotlin.representation.UserRepresentation
 import kotlin.reflect.full.memberProperties
 
 /*Extension Functions
@@ -11,6 +14,11 @@ fun BookModel.toBookRepresentation() = BookRepresentation(
         id = id,
         name = title,
         year = publishedDate
+)
+
+fun User.toUserRepresentation() = UserRepresentation(
+        id = id,
+        name = name
 )
 
 /*Kotlin Reflection
