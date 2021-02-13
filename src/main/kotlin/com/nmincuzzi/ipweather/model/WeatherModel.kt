@@ -1,6 +1,6 @@
-package com.chili.pockotlin.model
+package com.nmincuzzi.ipweather.model
 
-data class BookModel(
+data class WeatherModel(
         val id: String,
         val title: String,
         val author: String,

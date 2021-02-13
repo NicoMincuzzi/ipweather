@@ -1,14 +1,13 @@
-package com.chili.pockotlin.controller
+package com.nmincuzzi.ipweather.controller
 
-import com.chili.pockotlin.model.BookModel
-import com.chili.pockotlin.service.RomanceBookService
+import com.nmincuzzi.ipweather.model.WeatherModel
+import com.nmincuzzi.ipweather.service.CurrentWeatherService
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
@@ -16,15 +15,15 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import java.net.URI
 
-class BookControllerTest {
+class LocaleControllerTest {
 
     lateinit var mockMvc: MockMvc
 
     @MockK
-    lateinit var romanceBookService: RomanceBookService
+    lateinit var currentBookService: CurrentWeatherService
 
     @InjectMockKs
-    var bookController = BookController()
+    var bookController = WeatherController()
 
     @BeforeEach
     fun setUp() {
@@ -35,8 +34,8 @@ class BookControllerTest {
     @Test
     @Throws(Exception::class)
     fun testGetDeviceAuthorizationExpectedResult() {
-        val bookOne = BookModel(id = "id", title = "Il barone rampante", author = "ItaloCalvino", publishedDate = 1925)
-        every { romanceBookService.retrieveBooksByAuthor(any()) } returns bookOne
+        val bookOne = WeatherModel(id = "id", title = "Il barone rampante", author = "ItaloCalvino", publishedDate = 1925)
+        every { currentBookService.retrieveBooksByAuthor(any()) } returns bookOne
         val uri = URI("/book")
 
         this.mockMvc.perform(MockMvcRequestBuilders.get(uri)

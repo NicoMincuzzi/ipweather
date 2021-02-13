@@ -1,14 +1,14 @@
-package com.chili.pockotlin.java.model;
+package com.nmincuzzi.ipweather.java.model;
 
-public class User {
+public class LocaleModel {
 
     private String id;
     private String name;
 
-    public User() {
+    public LocaleModel() {
     }
 
-    public User(String id, String name) {
+    public LocaleModel(String id, String name) {
         this.id = id;
         this.name = name;
     }

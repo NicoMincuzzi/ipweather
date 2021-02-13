@@ -1,11 +1,11 @@
-package com.chili.pockotlin
+package com.nmincuzzi.ipweather
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class PocKotlinApplication
+class IpWeatherApplication
 
 fun main(args: Array<String>) {
-	runApplication<PocKotlinApplication>(*args)
+	runApplication<IpWeatherApplication>(*args)
 }

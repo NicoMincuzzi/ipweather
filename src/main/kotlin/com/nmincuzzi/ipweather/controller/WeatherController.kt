@@ -1,7 +1,7 @@
-package com.chili.pockotlin.controller
+package com.nmincuzzi.ipweather.controller
 
-import com.chili.pockotlin.representation.BookRepresentation
-import com.chili.pockotlin.service.RomanceBookService
+import com.nmincuzzi.ipweather.representation.WeatherRepresentation
+import com.nmincuzzi.ipweather.service.CurrentWeatherService
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
@@ -10,16 +10,16 @@ import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class BookController {
+class WeatherController {
 
-    private val log = LoggerFactory.getLogger(BookController::class.java)
+    private val log = LoggerFactory.getLogger(WeatherController::class.java)
 
     @Autowired
-    lateinit var romanceBookService: RomanceBookService
+    lateinit var currentBookService: CurrentWeatherService
 
     @GetMapping("/book")
-    fun book(@RequestParam(value = "author") name: String): ResponseEntity<BookRepresentation> {
-        val filteredBook = romanceBookService.retrieveBooksByAuthor(name)
+    fun book(@RequestParam(value = "author") name: String): ResponseEntity<WeatherRepresentation> {
+        val filteredBook = currentBookService.retrieveBooksByAuthor(name)
         log.info("Retrieved books from repository (book: {}).", filteredBook)
         return ResponseEntity.ok(filteredBook.toBookRepresentation())
     }
