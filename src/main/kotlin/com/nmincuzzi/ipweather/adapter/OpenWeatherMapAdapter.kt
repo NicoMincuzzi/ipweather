@@ -1,22 +1,23 @@
 package com.nmincuzzi.ipweather.adapter
 
-import com.nmincuzzi.ipweather.model.WeatherModel
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
-import java.util.*
 
 @Component
 class OpenWeatherMapAdapter {
 
-    private val log = LoggerFactory.getLogger(IpStackAdapter::class.java)
+    private val log = LoggerFactory.getLogger(OpenWeatherMapAdapter::class.java)
 
-    fun getBooksByAuthor(authorName: String): List<WeatherModel> {
-        val bookOne = WeatherModel(id = UUID.randomUUID().toString(), title = "Moby Dick", author = "HermanMelville", publishedDate = 1979)
-        val bookTwo = WeatherModel(id = UUID.randomUUID().toString(), title = "Uno, nessuno e centomila", author = "LuigiPirandello", publishedDate = 1955)
-        val bookThree = WeatherModel(id = UUID.randomUUID().toString(), title = "Il barone rampante", author = "ItaloCalvino", publishedDate = 1925)
-        val bookFour = WeatherModel(id = UUID.randomUUID().toString(), title = "Uno nessuno centomila", author = "ItaloCalvino", publishedDate = 1935)
-        log.info("The Book resources has been correctly retrieved!")
-        val books = listOf(bookOne, bookTwo, bookThree, bookFour)
-        return books.filter { bookModel -> bookModel.author == authorName }
+    fun execute(authorName: String) {
+        /*val client = OkHttpClient()
+
+        val request = Request.Builder()
+                .url("https://community-open-weather-map.p.rapidapi.com/weather?q=London%2Cuk&lat=0&lon=0&callback=test&id=2172797&lang=null&units=%22metric%22%20or%20%22imperial%22&mode=xml%2C%20html")
+                .get()
+                .addHeader("x-rapidapi-key", "f531619183mshd2a9e647bcd2ae2p1d5b6fjsn0ec1929f8f17")
+                .addHeader("x-rapidapi-host", "community-open-weather-map.p.rapidapi.com")
+                .build()
+
+        val response = client.newCall(request).execute()*/
     }
 }

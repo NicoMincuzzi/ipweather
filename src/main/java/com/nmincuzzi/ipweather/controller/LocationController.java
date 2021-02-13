@@ -1,5 +1,6 @@
 package com.nmincuzzi.ipweather.controller;
 
+import com.nmincuzzi.ipweather.service.LocationService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -8,13 +9,17 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 class LocationController {
 
-    @GetMapping("/location")
-    public void bookJava(HttpServletRequest request) {
+    private final LocationService locationService;
 
-        String ipAddress = request.getHeader("X-FORWARDED-FOR");
-        if (ipAddress == null) {
-            ipAddress = request.getRemoteAddr();
-            System.out.println(ipAddress);
-        }
+    public LocationController(LocationService locationService){
+        this.locationService = locationService;
+    }
+
+    @GetMapping("/location")
+    public void location(HttpServletRequest request) {
+
+        String ipAddress = locationService.retrieveIpAddress(request);
+
+        locationService.retrieveLocation(ipAddress);
     }
 }

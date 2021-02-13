@@ -1,7 +1,7 @@
 package com.nmincuzzi.ipweather.service
 
-import com.nmincuzzi.ipweather.model.WeatherModel
+import com.nmincuzzi.ipweather.representation.WeatherRepresentation
 
 interface WeatherService {
-    fun retrieveBooksByAuthor(name: String): WeatherModel
+    fun retrieveWeather(name: String): WeatherRepresentation
 }
