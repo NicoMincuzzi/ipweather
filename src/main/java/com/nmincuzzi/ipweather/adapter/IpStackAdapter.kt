@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component
 import java.util.*
 
 @Component
-class OpenWeatherMapAdapter {
+class IpStackAdapter {
 
     private val log = LoggerFactory.getLogger(IpStackAdapter::class.java)
 

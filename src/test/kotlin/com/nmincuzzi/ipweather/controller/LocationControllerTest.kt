@@ -15,7 +15,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import java.net.URI
 
-class LocaleControllerTest {
+class LocationControllerTest {
 
     lateinit var mockMvc: MockMvc
 
