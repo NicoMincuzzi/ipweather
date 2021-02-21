@@ -1,19 +1,13 @@
 package com.nmincuzzi.ipweather.controller
 
-import com.nmincuzzi.ipweather.model.WeatherModel
 import com.nmincuzzi.ipweather.service.CurrentWeatherService
 import io.mockk.MockKAnnotations
-import io.mockk.every
 import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
-import java.net.URI
 
 class LocationControllerTest {
 
@@ -23,12 +17,12 @@ class LocationControllerTest {
     lateinit var currentBookService: CurrentWeatherService
 
     @InjectMockKs
-    var bookController = WeatherController()
+    var weatherController = WeatherController()
 
     @BeforeEach
     fun setUp() {
         MockKAnnotations.init(this)
-        this.mockMvc = MockMvcBuilders.standaloneSetup(this.bookController).build()
+        this.mockMvc = MockMvcBuilders.standaloneSetup(this.weatherController).build()
     }
 
     @Test

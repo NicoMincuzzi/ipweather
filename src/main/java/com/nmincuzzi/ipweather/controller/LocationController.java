@@ -11,14 +11,17 @@ class LocationController {
 
     private final LocationService locationService;
 
-    public LocationController(LocationService locationService){
+    public LocationController(LocationService locationService) {
         this.locationService = locationService;
     }
 
     @GetMapping("/location")
     public void location(HttpServletRequest request) {
 
-        String ipAddress = locationService.retrieveIpAddress(request);
+        String ipAddress = locationService.retrieveIpAddress(
+                request.getHeader("X-FORWARDED-FOR"),
+                request.getRemoteAddr()
+        );
 
         locationService.retrieveLocation(ipAddress);
     }

@@ -1,20 +1,26 @@
 package com.nmincuzzi.ipweather.service;
 
+import com.nmincuzzi.ipweather.adapter.IpStackAdapter;
 import org.springframework.stereotype.Service;
-
-import javax.servlet.http.HttpServletRequest;
 
 @Service
 public class LocationService {
 
-    public String retrieveIpAddress(HttpServletRequest request) {
-        String ipAddress = request.getHeader("X-FORWARDED-FOR");
+    private final IpStackAdapter ipStackAdapter;
+
+    public LocationService(IpStackAdapter ipStackAdapter) {
+        this.ipStackAdapter = ipStackAdapter;
+    }
+
+    public String retrieveIpAddress(String xForwardedForHeader, String remoteAddr) {
+        String ipAddress = xForwardedForHeader;
         if (ipAddress.isBlank()) {
-            ipAddress = request.getRemoteAddr();
+            ipAddress = remoteAddr;
         }
         return ipAddress;
     }
 
     public void retrieveLocation(String ipAddress) {
+        ipStackAdapter.execute(ipAddress);
     }
 }
