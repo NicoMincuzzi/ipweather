@@ -1,7 +1,11 @@
 package com.nmincuzzi.ipweather.service;
 
 import com.nmincuzzi.ipweather.adapter.IpStackAdapter;
+import com.nmincuzzi.ipweather.model.IpStackModel;
+import com.nmincuzzi.ipweather.representation.LocationRepresentation;
 import org.springframework.stereotype.Service;
+
+import static com.nmincuzzi.ipweather.controller.ConverterKt.toLocationRepresentation;
 
 @Service
 public class LocationService {
@@ -20,7 +24,8 @@ public class LocationService {
         return ipAddress;
     }
 
-    public void retrieveLocation(String ipAddress) {
-        ipStackAdapter.execute(ipAddress);
+    public LocationRepresentation retrieveLocation(String ipAddress) {
+        IpStackModel ipStackModel = ipStackAdapter.execute(ipAddress);
+        return toLocationRepresentation(ipStackModel);
     }
 }

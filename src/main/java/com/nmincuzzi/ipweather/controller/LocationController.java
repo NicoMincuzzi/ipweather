@@ -1,6 +1,8 @@
 package com.nmincuzzi.ipweather.controller;
 
+import com.nmincuzzi.ipweather.representation.LocationRepresentation;
 import com.nmincuzzi.ipweather.service.LocationService;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,14 +17,14 @@ class LocationController {
         this.locationService = locationService;
     }
 
-    @GetMapping("/location")
-    public void location(HttpServletRequest request) {
+    @GetMapping(value = "/location", produces = MediaType.APPLICATION_JSON_VALUE)
+    public LocationRepresentation location(HttpServletRequest request) {
 
         String ipAddress = locationService.retrieveIpAddress(
                 request.getHeader("X-FORWARDED-FOR"),
                 request.getRemoteAddr()
         );
 
-        locationService.retrieveLocation(ipAddress);
+        return locationService.retrieveLocation(ipAddress);
     }
 }

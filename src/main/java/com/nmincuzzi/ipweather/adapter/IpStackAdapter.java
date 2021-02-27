@@ -14,7 +14,12 @@ public class IpStackAdapter {
         RestTemplate restTemplate = new RestTemplate(getClientHttpRequestFactory());
         String fooResourceUrl = "http://localhost:8080/" + ipAddress + "?" + "access_key=";
         ResponseEntity<String> response = restTemplate.getForEntity(fooResourceUrl + "/1", String.class);
-        return new IpStackModel();
+
+        if(response.getStatusCode().is2xxSuccessful()){
+            //TODO create IpStackModel
+        }
+
+        return null;
     }
 
     private ClientHttpRequestFactory getClientHttpRequestFactory() {
