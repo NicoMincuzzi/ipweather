@@ -1,32 +1,38 @@
 package com.nmincuzzi.ipweather.adapter;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.nmincuzzi.ipweather.model.IpStackModel;
+import com.nmincuzzi.ipweather.expection.GenericError;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.client.ClientHttpRequestFactory;
-import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+@Slf4j
 @Component
 public class IpStackAdapter {
 
-    public IpStackModel execute(String ipAddress) {
-        RestTemplate restTemplate = new RestTemplate(getClientHttpRequestFactory());
-        String fooResourceUrl = "http://localhost:8080/" + ipAddress + "?" + "access_key=";
-        ResponseEntity<String> response = restTemplate.getForEntity(fooResourceUrl + "/1", String.class);
+    public IpStackModel execute(String ipAddress) throws GenericError {
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "http://localhost:8080/" + ipAddress + "?" + "access_key=";
+        ResponseEntity<ObjectNode> response = restTemplate.getForEntity(url, ObjectNode.class);
 
-        if(response.getStatusCode().is2xxSuccessful()){
-            //TODO create IpStackModel
+        if (response.getStatusCode().is2xxSuccessful() && response.getBody() != null) {
+            return extracted(response.getBody());
         }
-
-        return null;
+        throw new GenericError();
     }
 
-    private ClientHttpRequestFactory getClientHttpRequestFactory() {
-        int timeout = 5000;
-        HttpComponentsClientHttpRequestFactory clientHttpRequestFactory = new HttpComponentsClientHttpRequestFactory();
-        clientHttpRequestFactory.setConnectTimeout(timeout);
-        return clientHttpRequestFactory;
+    private IpStackModel extracted(ObjectNode response) {
+        return new IpStackModel(
+                response.get("country_code").toString(),
+                response.get("country_name").toString(),
+                response.get("region_code").toString(),
+                response.get("region_name").toString(),
+                response.get("city").toString(),
+                response.get("zip").toString(),
+                response.get("latitude").toString(),
+                response.get("longitude").toString());
     }
 
 }

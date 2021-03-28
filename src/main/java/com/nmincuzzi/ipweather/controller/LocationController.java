@@ -1,6 +1,7 @@
 package com.nmincuzzi.ipweather.controller;
 
 import com.nmincuzzi.ipweather.representation.LocationRepresentation;
+import com.nmincuzzi.ipweather.expection.GenericError;
 import com.nmincuzzi.ipweather.service.LocationService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +19,7 @@ class LocationController {
     }
 
     @GetMapping(value = "/location", produces = MediaType.APPLICATION_JSON_VALUE)
-    public LocationRepresentation location(HttpServletRequest request) {
+    public LocationRepresentation location(HttpServletRequest request) throws GenericError {
 
         String ipAddress = locationService.retrieveIpAddress(
                 request.getHeader("X-FORWARDED-FOR"),
