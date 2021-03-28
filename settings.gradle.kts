@@ -1,1 +1,1 @@
-rootProject.name = "poc-kotlin"
+rootProject.name = "ipwather"
