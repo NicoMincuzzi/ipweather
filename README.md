@@ -1,3 +1,10 @@
 # ipweather
 [![GitHub Workflow Status](https://github.com/NicoMincuzzi/ipweather/workflows/Java%20CI%20with%20Gradle/badge.svg)](https://github.com/NicoMincuzzi/ipweather/actions?query=workflow%3AJava%20CI%20with%20Gradle)
 ![GitHub repo size](https://img.shields.io/github/repo-size/NicoMincuzzi/ipweather)
+
+
+## How to Contribute
+Make a pull request...
+
+## License
+Distributed under Apache-2.0 License, please see license file within the code for more details.
