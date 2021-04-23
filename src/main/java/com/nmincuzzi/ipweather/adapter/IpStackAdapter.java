@@ -1,8 +1,8 @@
 package com.nmincuzzi.ipweather.adapter;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.nmincuzzi.ipweather.model.IpStackModel;
 import com.nmincuzzi.ipweather.expection.GenericError;
+import com.nmincuzzi.ipweather.model.IpStackModel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -12,8 +12,13 @@ import org.springframework.web.client.RestTemplate;
 @Component
 public class IpStackAdapter {
 
+    private final RestTemplate restTemplate;
+
+    public IpStackAdapter(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
+
     public IpStackModel execute(String ipAddress) throws GenericError {
-        RestTemplate restTemplate = new RestTemplate();
         String url = "http://localhost:8080/" + ipAddress + "?" + "access_key=";
         ResponseEntity<ObjectNode> response = restTemplate.getForEntity(url, ObjectNode.class);
 

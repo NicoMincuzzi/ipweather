@@ -21,7 +21,7 @@ class LocationControllerTest {
     }
 
     @Test
-    fun testGetDeviceAuthorizationExpectedResult() {
+    fun retrieveCityGivenAIpAddress() {
         val location = LocationRepresentation("IT", "Italy", "ignore", "ignore", "Milan", "ignore", "ignore", "ignore")
 
         every { locationService.retrieveIpAddress(null, "127.0.0.1") } returns "127.0.0.1"
@@ -29,6 +29,7 @@ class LocationControllerTest {
 
         val locationController = LocationController(locationService)
         val result = locationController.location(MockHttpServletRequest())
+
         assertEquals("Milan", result.city)
     }
 
