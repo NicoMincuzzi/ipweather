@@ -1,41 +1,35 @@
 package com.nmincuzzi.ipweather.controller
 
-import com.nmincuzzi.ipweather.service.CurrentWeatherService
+import com.nmincuzzi.ipweather.representation.LocationRepresentation
+import com.nmincuzzi.ipweather.service.LocationService
 import io.mockk.MockKAnnotations
-import io.mockk.impl.annotations.InjectMockKs
+import io.mockk.every
 import io.mockk.impl.annotations.MockK
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.springframework.test.web.servlet.MockMvc
-import org.springframework.test.web.servlet.setup.MockMvcBuilders
+import org.springframework.mock.web.MockHttpServletRequest
 
 class LocationControllerTest {
 
-    lateinit var mockMvc: MockMvc
-
     @MockK
-    lateinit var currentBookService: CurrentWeatherService
-
-    @InjectMockKs
-    var weatherController = WeatherController()
+    lateinit var locationService: LocationService
 
     @BeforeEach
     fun setUp() {
         MockKAnnotations.init(this)
-        this.mockMvc = MockMvcBuilders.standaloneSetup(this.weatherController).build()
     }
 
     @Test
-    //@Throws(Exception::class)
     fun testGetDeviceAuthorizationExpectedResult() {
-        /*val bookOne = WeatherModel(id = "id", title = "Il barone rampante", author = "ItaloCalvino", publishedDate = 1925)
-        every { currentBookService.retrieveWeather(any()) } returns bookOne
-        val uri = URI("/book")
+        val location = LocationRepresentation("IT", "Italy", "ignore", "ignore", "Milan", "ignore", "ignore", "ignore")
 
-        this.mockMvc.perform(MockMvcRequestBuilders.get(uri)
-                .param("author", "ItaloCalvino")
-                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.status().isOk)*/
+        every { locationService.retrieveIpAddress(null, "127.0.0.1") } returns "127.0.0.1"
+        every { locationService.retrieveLocation("127.0.0.1") } returns location
+
+        val locationController = LocationController(locationService)
+        val result = locationController.location(MockHttpServletRequest())
+        assertEquals("Milan", result.city)
     }
 
 }
