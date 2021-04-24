@@ -2,6 +2,15 @@ package com.nmincuzzi.ipweather.representation;
 
 public class LocationRepresentation {
 
+    private String countryCode;
+    private String countryName;
+    private String regionCode;
+    private String regionName;
+    private String city;
+    private String zip;
+    private String latitude;
+    private String longitude;
+
     public LocationRepresentation(String countryCode, String countryName, String regionCode, String regionName, String city, String zip, String latitude, String longitude) {
         this.countryCode = countryCode;
         this.countryName = countryName;
@@ -77,12 +86,4 @@ public class LocationRepresentation {
         this.longitude = longitude;
     }
 
-    private String countryCode;
-    private String countryName;
-    private String regionCode;
-    private String regionName;
-    private String city;
-    private String zip;
-    private String latitude;
-    private String longitude;
 }

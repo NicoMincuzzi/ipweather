@@ -3,19 +3,12 @@ package com.nmincuzzi.ipweather.model;
 public class IpStackModel {
 
     private String countryCode;
-
     private String countryName;
-
     private String regionCode;
-
     private String regionName;
-
     private String city;
-
     private String zip;
-
     private String latitude;
-
     private String longitude;
 
     public IpStackModel(String countryCode,
