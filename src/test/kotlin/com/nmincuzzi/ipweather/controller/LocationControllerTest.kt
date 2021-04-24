@@ -1,6 +1,6 @@
 package com.nmincuzzi.ipweather.controller
 
-import com.nmincuzzi.ipweather.representation.LocationRepresentation
+import com.nmincuzzi.ipweather.builders.LocationRepresentationBuilder
 import com.nmincuzzi.ipweather.service.LocationService
 import io.mockk.MockKAnnotations
 import io.mockk.every
@@ -22,7 +22,7 @@ class LocationControllerTest {
 
     @Test
     fun retrieveCityGivenAIpAddress() {
-        val location = LocationRepresentation("IT", "Italy", "ignore", "ignore", "Milan", "ignore", "ignore", "ignore")
+        val location = LocationRepresentationBuilder().city("Milan").build()
 
         every { locationService.retrieveIpAddress(null, "127.0.0.1") } returns "127.0.0.1"
         every { locationService.retrieveLocation("127.0.0.1") } returns location
