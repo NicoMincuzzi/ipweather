@@ -1,23 +1,36 @@
 package com.nmincuzzi.ipweather.adapter
 
-import org.slf4j.LoggerFactory
+import com.fasterxml.jackson.databind.node.ObjectNode
+import com.nmincuzzi.ipweather.expection.GenericError
+import com.nmincuzzi.ipweather.model.OpenWeatherMapModel
+import com.nmincuzzi.ipweather.model.OpenWeatherRequest
+import org.springframework.http.HttpEntity
+import org.springframework.http.HttpHeaders
+import org.springframework.http.HttpMethod.GET
 import org.springframework.stereotype.Component
+import org.springframework.web.client.RestTemplate
 
 @Component
-class OpenWeatherMapAdapter {
+class OpenWeatherMapAdapter(val restTemplate: RestTemplate) {
 
-    private val log = LoggerFactory.getLogger(OpenWeatherMapAdapter::class.java)
+    fun execute(city: String, openWeatherRequest: OpenWeatherRequest): OpenWeatherMapModel {
+        val url = ""
 
-    fun execute(authorName: String) {
-        /*val client = OkHttpClient()
+        val headers = HttpHeaders();
+        headers.set("x-rapidapi-key", "");
+        headers.set("x-rapidapi-host", "");
 
-        val request = Request.Builder()
-                .url("")
-                .get()
-                .addHeader("x-rapidapi-key", "f531619183mshd2a9e647bcd2ae2p1d5b6fjsn0ec1929f8f17")
-                .addHeader("x-rapidapi-host", "community-open-weather-map.p.rapidapi.com")
-                .build()
+        val entity = HttpEntity<HttpHeaders>(headers)
 
-        val response = client.newCall(request).execute()*/
+        val response = restTemplate.exchange(url, GET, entity, ObjectNode::class.java)
+
+        if (response.statusCode.is2xxSuccessful && response.body != null) {
+            return toModel(response.body)
+        }
+        throw GenericError()
+    }
+
+    fun toModel(response: ObjectNode?): OpenWeatherMapModel {
+        return OpenWeatherMapModel(response?.get("id").toString())
     }
 }

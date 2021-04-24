@@ -23,12 +23,12 @@ public class IpStackAdapter {
         ResponseEntity<ObjectNode> response = restTemplate.getForEntity(url, ObjectNode.class);
 
         if (response.getStatusCode().is2xxSuccessful() && response.getBody() != null) {
-            return extracted(response.getBody());
+            return toModel(response.getBody());
         }
         throw new GenericError();
     }
 
-    private IpStackModel extracted(ObjectNode response) {
+    private IpStackModel toModel(ObjectNode response) {
         return new IpStackModel(
                 response.get("country_code").toString(),
                 response.get("country_name").toString(),
