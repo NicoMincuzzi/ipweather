@@ -1,7 +1,7 @@
 package com.nmincuzzi.ipweather.adapter
 
-import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.node.ObjectNode
+import com.nmincuzzi.ipweather.builders.IpStackResponseBodyBuilder
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
@@ -25,15 +25,8 @@ class IpStackAdapterTest {
 
     @Test
     fun callIpStackEndpointsToRetrieveCity() {
-        val body = ObjectMapper().createObjectNode()
-        body.put("city", "Milan")
-        body.put("country_code", "")
-        body.put("country_name", "")
-        body.put("region_code", "")
-        body.put("region_name", "")
-        body.put("zip", "")
-        body.put("latitude", "")
-        body.put("longitude", "")
+        val body = IpStackResponseBodyBuilder().city("Milan").build()
+
         val response = ResponseEntity(body, HttpStatus.OK)
 
         every {

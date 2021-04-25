@@ -1,5 +1,6 @@
 package com.nmincuzzi.ipweather.model
 
 data class OpenWeatherMapModel(
-        val id: String
+    val weather: Weather?,
+    val main: Main?
 )

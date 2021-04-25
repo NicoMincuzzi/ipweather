@@ -1,3 +1,3 @@
 package com.nmincuzzi.ipweather.model
 
-class OpenWeatherRequest(val apiKey: String, val host: String)
+class OpenWeatherRequest(val appId: String, val host: String)
