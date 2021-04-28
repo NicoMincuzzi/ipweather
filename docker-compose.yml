@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  ipweather:
+    container_name: ipweather-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - IPSTACK_URL=${IPSTACK_URL}
+      - IPSTACK_ACCESS_KEY=${ACCESS_KEY}
+    ports:
+      - 9090:8080
