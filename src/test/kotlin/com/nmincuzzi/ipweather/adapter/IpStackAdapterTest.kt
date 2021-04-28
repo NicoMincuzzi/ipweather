@@ -31,12 +31,12 @@ class IpStackAdapterTest {
 
         every {
             restTemplate.getForEntity(
-                "http://localhost:8080/127.0.0.1?access_key=",
+                "http://localhost:8080/127.0.0.1?access_key=123",
                 ObjectNode::class.java
             )
         } returns response
 
-        val ipStackAdapter = IpStackAdapter(restTemplate)
+        val ipStackAdapter = IpStackAdapter(restTemplate,"http://localhost:8080/","123")
         val result = ipStackAdapter.execute("127.0.0.1")
         assertEquals("\"Milan\"", result.city)
     }
