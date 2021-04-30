@@ -8,9 +8,9 @@ import com.nmincuzzi.ipweather.representation.WeatherRepresentation
 /*Extension Functions
 * https://kotlinlang.org/docs/reference/extensions.html
 */
-fun OpenWeatherMapModel.toBookRepresentation() = WeatherRepresentation(
+/*fun OpenWeatherMapModel.toBookRepresentation() = WeatherRepresentation(
     id = id
-)
+)*/
 
 fun IpStackModel.toLocationRepresentation() = LocationRepresentation(
     countryCode,
