@@ -2,6 +2,7 @@ package com.nmincuzzi.ipweather.adapter
 
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.databind.node.ObjectNode
 import com.fasterxml.jackson.module.kotlin.treeToValue
 import com.nmincuzzi.ipweather.expection.GenericError
 import com.nmincuzzi.ipweather.model.Main
@@ -20,7 +21,7 @@ class OpenWeatherMapAdapter(val restTemplate: RestTemplate) {
     fun execute(city: String, openWeatherRequest: OpenWeatherRequest): OpenWeatherMapModel {
         val url = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + openWeatherRequest.appId
         val entity = buildHttpEntity()
-        val response = restTemplate.exchange(url, GET, entity, JsonNode::class.java)
+        val response = restTemplate.exchange(url, GET, entity, ObjectNode::class.java)
 
         if (response.statusCode.is2xxSuccessful && response.body != null) {
             return toModel(response.body!!)

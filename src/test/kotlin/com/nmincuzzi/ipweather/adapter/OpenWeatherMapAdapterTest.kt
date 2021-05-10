@@ -7,6 +7,8 @@ import com.nmincuzzi.ipweather.model.OpenWeatherRequest
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
+import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.http.*
@@ -24,7 +26,9 @@ class OpenWeatherMapAdapterTest {
 
     @Test
     fun callOpenWeatherApiByCity() {
-        /*val openWeatherRequest = OpenWeatherRequest("ignore", "ignore")
+        val openWeatherRequest = OpenWeatherRequest("ignore", "ignore")
+
+        val body: ObjectNode = ObjectMapper().createObjectNode()
 
         val weatherObject = ObjectMapper().createObjectNode()
         weatherObject.put("id", 800)
@@ -33,16 +37,16 @@ class OpenWeatherMapAdapterTest {
         weatherObject.put("icon", "01d")
         val weatherArray: ArrayNode = ObjectMapper().createArrayNode()
         weatherArray.add(weatherObject)
-        val body: ObjectNode = ObjectMapper().createObjectNode()
-        body.put("weather", weatherArray)
+        body.set<ArrayNode>("weather", weatherArray)
+
         val mainObject = ObjectMapper().createObjectNode()
-        weatherObject.put("temp", 23.43)
-        weatherObject.put("feels_like", 22.12)
-        weatherObject.put("temp_min", 22.78)
-        weatherObject.put("temp_max", 24.44)
-        weatherObject.put("pressure", 1017)
-        weatherObject.put("humidity", 11)
-        body.put("weather", mainObject)
+        mainObject.put("temp", 23.43)
+        mainObject.put("feels_like", 22.12)
+        mainObject.put("temp_min", 22.78)
+        mainObject.put("temp_max", 24.44)
+        mainObject.put("pressure", 1017)
+        mainObject.put("humidity", 11)
+        body.set<ObjectNode>("main", mainObject)
 
         val response = ResponseEntity(body, HttpStatus.OK)
         every {
@@ -55,7 +59,9 @@ class OpenWeatherMapAdapterTest {
         } returns response
 
         val openWeatherMapAdapter = OpenWeatherMapAdapter(restTemplate)
-        openWeatherMapAdapter.execute("ignore", openWeatherRequest)*/
+        val result = openWeatherMapAdapter.execute("ignore", openWeatherRequest)
+        assertEquals("Clear", result.weather?.main)
+        assertEquals(23.43f, result.main?.temp)
     }
 
     private fun buildHttpEntity(): HttpEntity<HttpHeaders> {
