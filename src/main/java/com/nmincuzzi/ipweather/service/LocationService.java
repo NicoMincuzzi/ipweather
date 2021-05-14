@@ -6,7 +6,7 @@ import com.nmincuzzi.ipweather.model.IpStackModel;
 import com.nmincuzzi.ipweather.representation.LocationRepresentation;
 import org.springframework.stereotype.Service;
 
-import static com.nmincuzzi.ipweather.controller.ConverterKt.toLocationRepresentation;
+import static com.nmincuzzi.ipweather.converter.ConverterKt.toLocationRepresentation;
 
 @Service
 public class LocationService {

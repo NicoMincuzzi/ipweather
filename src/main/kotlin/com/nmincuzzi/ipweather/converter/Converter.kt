@@ -1,17 +1,14 @@
-package com.nmincuzzi.ipweather.controller
+package com.nmincuzzi.ipweather.converter
 
 import com.nmincuzzi.ipweather.model.IpStackModel
 import com.nmincuzzi.ipweather.model.OpenWeatherMapModel
 import com.nmincuzzi.ipweather.representation.LocationRepresentation
 import com.nmincuzzi.ipweather.representation.WeatherRepresentation
+import kotlin.reflect.full.memberProperties
 
 /*Extension Functions
 * https://kotlinlang.org/docs/reference/extensions.html
 */
-/*fun OpenWeatherMapModel.toBookRepresentation() = WeatherRepresentation(
-    id = id
-)*/
-
 fun IpStackModel.toLocationRepresentation() = LocationRepresentation(
     countryCode,
     countryName,
@@ -26,19 +23,17 @@ fun IpStackModel.toLocationRepresentation() = LocationRepresentation(
 /*Kotlin Reflection
 * https://kotlinlang.org/docs/reference/reflection.html
 */
-/*fun IpStackModel.toLocationRepresentation() = with(::LocationRepresentation) {
-    val propertiesByName = IpStackModel::class.memberProperties.associateBy { it.name }
+fun OpenWeatherMapModel.toWeatherRepresentation() = with(::WeatherRepresentation) {
+    val propertiesByName = OpenWeatherMapModel::class.memberProperties.associateBy { it.name }
     callBy(parameters.associateWith { parameter ->
         parameter to when (parameter.name) {
-            "countryCode" -> "countryCode"
-            "countryName" -> "countryName"
-            "regionCode" -> "regionCode"
-            "regionName" -> "regionName"
-            "city" -> "city"
-            "zip" -> "zip"
-            "latitude" -> "latitude"
-            "longitude" -> "longitude"
-            else -> propertiesByName[parameter.name]?.get(this@toLocationRepresentation)
+            "forecast" -> "description"
+            "temp" -> "temp"
+            "feels_like" -> "feels_like"
+            "temp_min" -> "temp_min"
+            "temp_max" -> "temp_max"
+            "humidity" -> "humidity"
+            else -> propertiesByName[parameter.name]?.get(this@toWeatherRepresentation)
         }
     })
-}*/
+}

@@ -1,6 +1,5 @@
 package com.nmincuzzi.ipweather.converter
 
-import com.nmincuzzi.ipweather.controller.toLocationRepresentation
 import com.nmincuzzi.ipweather.model.IpStackModel
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test

@@ -26,8 +26,6 @@ class OpenWeatherMapAdapterTest {
 
     @Test
     fun callOpenWeatherApiByCity() {
-        val openWeatherRequest = OpenWeatherRequest("ignore", "ignore")
-
         val body: ObjectNode = ObjectMapper().createObjectNode()
 
         val weatherObject = ObjectMapper().createObjectNode()
@@ -58,8 +56,9 @@ class OpenWeatherMapAdapterTest {
             )
         } returns response
 
-        val openWeatherMapAdapter = OpenWeatherMapAdapter(restTemplate)
-        val result = openWeatherMapAdapter.execute("ignore", openWeatherRequest)
+        val host = "http://api.openweathermap.org/data/2.5/weather"
+        val openWeatherMapAdapter = OpenWeatherMapAdapter(restTemplate, host,"ignore")
+        val result = openWeatherMapAdapter.execute("ignore")
         assertEquals("Clear", result.weather?.main)
         assertEquals(23.43f, result.main?.temp)
     }
