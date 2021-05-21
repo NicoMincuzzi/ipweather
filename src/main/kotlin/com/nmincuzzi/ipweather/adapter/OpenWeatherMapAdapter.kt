@@ -23,7 +23,7 @@ class OpenWeatherMapAdapter(
 ) {
 
     fun execute(city: String): OpenWeatherMapModel {
-        val url = "$host?q=$city&appid=$appId"
+        val url = "$host?q=$city&appid=$appId&units=metric"
         val entity = buildHttpEntity()
         val response = restTemplate.exchange(url, GET, entity, ObjectNode::class.java)
 
