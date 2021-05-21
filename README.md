@@ -1,5 +1,5 @@
 # ipweather
-[![GitHub Workflow Status](https://github.com/NicoMincuzzi/ipweather/workflows/CI/badge.svg)](https://github.com/NicoMincuzzi/ipweather/actions?query=CI)
+[![CI](https://github.com/NicoMincuzzi/ipweather/actions/workflows/gradle.yml/badge.svg)](https://github.com/NicoMincuzzi/ipweather/actions/workflows/gradle.yml)
 [![codecov](https://codecov.io/gh/NicoMincuzzi/ipweather/branch/master/graph/badge.svg?token=ZIFQSMBMGR)](https://codecov.io/gh/NicoMincuzzi/ipweather)
 ![GitHub repo size](https://img.shields.io/github/repo-size/NicoMincuzzi/ipweather)
 
