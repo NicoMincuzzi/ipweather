@@ -35,7 +35,7 @@ tasks.test {
 
 tasks.jacocoTestReport {
     reports {
-        xml.isEnabled = false
+        xml.isEnabled = true
         csv.isEnabled = false
     }
     dependsOn(tasks.test) // tests are required to run before generating the report
