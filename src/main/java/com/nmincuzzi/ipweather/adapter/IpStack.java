@@ -9,17 +9,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import static com.nmincuzzi.ipweather.model.IpStackModel.to;
+
 @Slf4j
 @Component
-public class IpStackAdapter {
-
+public class IpStack {
     private final RestTemplate restTemplate;
     private final String host;
     private final String accessKey;
 
-    public IpStackAdapter(RestTemplate restTemplate,
-                          @Value("${ipstack.url}") String host,
-                          @Value("${ipstack.access_key}") String accessKey) {
+    public IpStack(RestTemplate restTemplate,
+                   @Value("${ipstack.url}") String host,
+                   @Value("${ipstack.access_key}") String accessKey) {
         this.restTemplate = restTemplate;
         this.host = host;
         this.accessKey = accessKey;
@@ -30,21 +31,8 @@ public class IpStackAdapter {
         ResponseEntity<ObjectNode> response = restTemplate.getForEntity(url, ObjectNode.class);
 
         if (response.getStatusCode().is2xxSuccessful() && response.getBody() != null) {
-            return toModel(response.getBody());
+            return to(response.getBody());
         }
         throw new GenericError();
     }
-
-    private IpStackModel toModel(ObjectNode response) {
-        return new IpStackModel(
-                response.get("country_code").toString(),
-                response.get("country_name").toString(),
-                response.get("region_code").toString(),
-                response.get("region_name").toString(),
-                response.get("city").toString(),
-                response.get("zip").toString(),
-                response.get("latitude").toString(),
-                response.get("longitude").toString());
-    }
-
 }

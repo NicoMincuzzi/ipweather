@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component
 import org.springframework.web.client.RestTemplate
 
 @Component
-class OpenWeatherMapAdapter(
+class OpenWeatherMap(
     private val restTemplate: RestTemplate,
     @Value("\${openstackmap.url}") private val host: String,
     @Value("\${openstackmap.app_id}") private val appId: String

@@ -2,7 +2,7 @@ package com.nmincuzzi.ipweather.controller
 
 import com.nmincuzzi.ipweather.representation.WeatherRepresentation
 import com.nmincuzzi.ipweather.service.CurrentWeatherService
-import org.springframework.http.MediaType
+import org.springframework.http.MediaType.APPLICATION_JSON_VALUE
 import org.springframework.http.ResponseEntity
 import org.springframework.util.DigestUtils
 import org.springframework.web.bind.annotation.GetMapping
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class WeatherController(private val currentWeatherService: CurrentWeatherService) {
 
-    @GetMapping("/city/{city}/weather", MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping("/city/{city}/weather", APPLICATION_JSON_VALUE)
     fun weather(@PathVariable(value = "city") city: String): ResponseEntity<WeatherRepresentation> {
         val currentWeather = currentWeatherService.retrieveWeather(city)
 

@@ -1,6 +1,6 @@
 package com.nmincuzzi.ipweather.service
 
-import com.nmincuzzi.ipweather.adapter.IpStackAdapter
+import com.nmincuzzi.ipweather.adapter.IpStack
 import com.nmincuzzi.ipweather.builders.IpStackModelBuilder
 import io.mockk.MockKAnnotations
 import io.mockk.every
@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test
 class LocaleServiceTest {
 
     @MockK
-    private lateinit var ipStackAdapter: IpStackAdapter
+    private lateinit var ipStack: IpStack
 
     @InjectMockKs
     private lateinit var locationService: LocationService
@@ -57,7 +57,7 @@ class LocaleServiceTest {
     fun retrieveLocaleInRepresentationFormat() {
         val ipStackModel = IpStackModelBuilder().city("Milan").build()
 
-        every { ipStackAdapter.execute("127.0.0.1") } returns ipStackModel
+        every { ipStack.execute("127.0.0.1") } returns ipStackModel
 
         val result = locationService.retrieveLocation("127.0.0.1")
 

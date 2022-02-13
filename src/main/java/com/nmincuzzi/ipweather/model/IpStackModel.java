@@ -1,15 +1,16 @@
 package com.nmincuzzi.ipweather.model;
 
-public class IpStackModel {
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
-    private String countryCode;
-    private String countryName;
-    private String regionCode;
-    private String regionName;
+public class IpStackModel {
+    private final String countryCode;
+    private final String countryName;
+    private final String regionCode;
+    private final String regionName;
     private String city;
-    private String zip;
-    private String latitude;
-    private String longitude;
+    private final String zip;
+    private final String latitude;
+    private final String longitude;
 
     public IpStackModel(String countryCode,
                         String countryName,
@@ -34,32 +35,16 @@ public class IpStackModel {
         return countryCode;
     }
 
-    public void setCountryCode(String countryCode) {
-        this.countryCode = countryCode;
-    }
-
     public String getCountryName() {
         return countryName;
-    }
-
-    public void setCountryName(String countryName) {
-        this.countryName = countryName;
     }
 
     public String getRegionCode() {
         return regionCode;
     }
 
-    public void setRegionCode(String regionCode) {
-        this.regionCode = regionCode;
-    }
-
     public String getRegionName() {
         return regionName;
-    }
-
-    public void setRegionName(String regionName) {
-        this.regionName = regionName;
     }
 
     public String getCity() {
@@ -74,24 +59,23 @@ public class IpStackModel {
         return zip;
     }
 
-    public void setZip(String zip) {
-        this.zip = zip;
-    }
-
     public String getLatitude() {
         return latitude;
-    }
-
-    public void setLatitude(String latitude) {
-        this.latitude = latitude;
     }
 
     public String getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(String longitude) {
-        this.longitude = longitude;
+    public static IpStackModel to(ObjectNode response) {
+        return new IpStackModel(
+                response.get("country_code").toString(),
+                response.get("country_name").toString(),
+                response.get("region_code").toString(),
+                response.get("region_name").toString(),
+                response.get("city").toString(),
+                response.get("zip").toString(),
+                response.get("latitude").toString(),
+                response.get("longitude").toString());
     }
-
 }

@@ -1,6 +1,6 @@
 package com.nmincuzzi.ipweather.service;
 
-import com.nmincuzzi.ipweather.adapter.IpStackAdapter;
+import com.nmincuzzi.ipweather.adapter.IpStack;
 import com.nmincuzzi.ipweather.expection.GenericError;
 import com.nmincuzzi.ipweather.model.IpStackModel;
 import com.nmincuzzi.ipweather.representation.LocationRepresentation;
@@ -11,10 +11,10 @@ import static com.nmincuzzi.ipweather.converter.ConverterKt.toLocationRepresenta
 @Service
 public class LocationService {
 
-    private final IpStackAdapter ipStackAdapter;
+    private final IpStack ipStack;
 
-    public LocationService(IpStackAdapter ipStackAdapter) {
-        this.ipStackAdapter = ipStackAdapter;
+    public LocationService(IpStack ipStack) {
+        this.ipStack = ipStack;
     }
 
     public String retrieveIpAddress(String xForwardedForHeader, String remoteAddr) {
@@ -26,7 +26,7 @@ public class LocationService {
     }
 
     public LocationRepresentation retrieveLocation(String ipAddress) throws GenericError {
-        IpStackModel ipStackModel = ipStackAdapter.execute(ipAddress);
+        IpStackModel ipStackModel = ipStack.execute(ipAddress);
         return toLocationRepresentation(ipStackModel);
     }
 }

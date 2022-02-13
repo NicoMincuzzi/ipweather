@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test
 import org.springframework.http.*
 import org.springframework.web.client.RestTemplate
 
-class OpenWeatherMapAdapterTest {
+class OpenWeatherMapTest {
 
     @MockK
     lateinit var restTemplate: RestTemplate

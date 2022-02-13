@@ -13,7 +13,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.client.RestTemplate
 
 
-class IpStackAdapterTest {
+class IpStackTest {
 
     @MockK
     lateinit var restTemplate: RestTemplate
@@ -36,8 +36,9 @@ class IpStackAdapterTest {
             )
         } returns response
 
-        val ipStackAdapter = IpStackAdapter(restTemplate,"http://localhost:8080/","123")
-        val result = ipStackAdapter.execute("127.0.0.1")
+        val ipStack =
+            IpStack(restTemplate, "http://localhost:8080/", "123")
+        val result = ipStack.execute("127.0.0.1")
         assertEquals("\"Milan\"", result.city)
     }
 }
