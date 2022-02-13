@@ -1,5 +1,5 @@
 # ipweather
-[![GitHub Workflow Status](https://github.com/NicoMincuzzi/ipweather/workflows/Java%20CI%20with%20Gradle/badge.svg)](https://github.com/NicoMincuzzi/ipweather/actions?query=workflow%3AJava%20CI%20with%20Gradle)
+[![CI](https://github.com/NicoMincuzzi/ipweather/actions/workflows/gradle.yml/badge.svg)](https://github.com/NicoMincuzzi/ipweather/actions/workflows/gradle.yml)
 [![codecov](https://codecov.io/gh/NicoMincuzzi/ipweather/branch/master/graph/badge.svg?token=ZIFQSMBMGR)](https://codecov.io/gh/NicoMincuzzi/ipweather)
 ![GitHub repo size](https://img.shields.io/github/repo-size/NicoMincuzzi/ipweather)
 
