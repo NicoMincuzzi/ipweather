@@ -25,20 +25,13 @@ class IpStackTest {
 
     @Test
     fun callIpStackEndpointsToRetrieveCity() {
-        val body = IpStackResponseBodyBuilder().city("Milan").build()
-
-        val response = ResponseEntity(body, HttpStatus.OK)
+        val response = ResponseEntity(IpStackResponseBodyBuilder().city("Milan").build(), HttpStatus.OK)
 
         every {
-            restTemplate.getForEntity(
-                "http://localhost:8080/127.0.0.1?access_key=123",
-                ObjectNode::class.java
-            )
+            restTemplate.getForEntity("http://localhost:8080/127.0.0.1?access_key=123", ObjectNode::class.java)
         } returns response
 
-        val ipStack =
-            IpStack(restTemplate, "http://localhost:8080/", "123")
-        val result = ipStack.execute("127.0.0.1")
+        val result = IpStack(restTemplate, "http://localhost:8080/", "123").execute("127.0.0.1")
         assertEquals("\"Milan\"", result.city)
     }
 }
