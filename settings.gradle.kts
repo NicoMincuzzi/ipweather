@@ -1,1 +1,1 @@
-rootProject.name = "ipwather"
+rootProject.name = "ipweather"

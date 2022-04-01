@@ -1,15 +1,14 @@
 package com.nmincuzzi.ipweather.representation;
 
 public class LocationRepresentation {
-
-    private String countryCode;
-    private String countryName;
-    private String regionCode;
-    private String regionName;
+    private final String countryCode;
+    private final String countryName;
+    private final String regionCode;
+    private final String regionName;
     private String city;
-    private String zip;
-    private String latitude;
-    private String longitude;
+    private final String zip;
+    private final String latitude;
+    private final String longitude;
 
     public LocationRepresentation(String countryCode, String countryName, String regionCode, String regionName, String city, String zip, String latitude, String longitude) {
         this.countryCode = countryCode;
@@ -26,32 +25,16 @@ public class LocationRepresentation {
         return countryCode;
     }
 
-    public void setCountryCode(String countryCode) {
-        this.countryCode = countryCode;
-    }
-
     public String getCountryName() {
         return countryName;
-    }
-
-    public void setCountryName(String countryName) {
-        this.countryName = countryName;
     }
 
     public String getRegionCode() {
         return regionCode;
     }
 
-    public void setRegionCode(String regionCode) {
-        this.regionCode = regionCode;
-    }
-
     public String getRegionName() {
         return regionName;
-    }
-
-    public void setRegionName(String regionName) {
-        this.regionName = regionName;
     }
 
     public String getCity() {
@@ -66,24 +49,11 @@ public class LocationRepresentation {
         return zip;
     }
 
-    public void setZip(String zip) {
-        this.zip = zip;
-    }
-
     public String getLatitude() {
         return latitude;
-    }
-
-    public void setLatitude(String latitude) {
-        this.latitude = latitude;
     }
 
     public String getLongitude() {
         return longitude;
     }
-
-    public void setLongitude(String longitude) {
-        this.longitude = longitude;
-    }
-
 }
