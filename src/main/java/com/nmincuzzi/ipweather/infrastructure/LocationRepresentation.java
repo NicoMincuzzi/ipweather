@@ -1,4 +1,4 @@
-package com.nmincuzzi.ipweather.representation;
+package com.nmincuzzi.ipweather.infrastructure;
 
 public class LocationRepresentation {
     private final String countryCode;

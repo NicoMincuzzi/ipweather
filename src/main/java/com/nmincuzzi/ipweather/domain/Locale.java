@@ -1,8 +1,8 @@
-package com.nmincuzzi.ipweather.model;
+package com.nmincuzzi.ipweather.domain;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
-public class IpStackModel {
+public class Locale {
     private final String countryCode;
     private final String countryName;
     private final String regionCode;
@@ -12,14 +12,14 @@ public class IpStackModel {
     private final String latitude;
     private final String longitude;
 
-    public IpStackModel(String countryCode,
-                        String countryName,
-                        String regionCode,
-                        String regionName,
-                        String city,
-                        String zip,
-                        String latitude,
-                        String longitude
+    public Locale(String countryCode,
+                  String countryName,
+                  String regionCode,
+                  String regionName,
+                  String city,
+                  String zip,
+                  String latitude,
+                  String longitude
     ) {
         this.countryCode = countryCode;
         this.countryName = countryName;
@@ -67,8 +67,8 @@ public class IpStackModel {
         return longitude;
     }
 
-    public static IpStackModel to(ObjectNode response) {
-        return new IpStackModel(
+    public static Locale to(ObjectNode response) {
+        return new Locale(
                 response.get("country_code").toString(),
                 response.get("country_name").toString(),
                 response.get("region_code").toString(),

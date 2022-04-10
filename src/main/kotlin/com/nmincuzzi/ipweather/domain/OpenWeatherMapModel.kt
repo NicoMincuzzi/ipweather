@@ -1,6 +1,6 @@
-package com.nmincuzzi.ipweather.model
+package com.nmincuzzi.ipweather.domain
 
-import com.nmincuzzi.ipweather.representation.WeatherRepresentation
+import com.nmincuzzi.ipweather.infrastructure.WeatherRepresentation
 
 data class OpenWeatherMapModel(val weather: Weather?, val main: Main?) {
     fun toWeatherRepresentation(): WeatherRepresentation {

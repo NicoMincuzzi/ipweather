@@ -1,7 +1,6 @@
-package com.nmincuzzi.ipweather.controller
+package com.nmincuzzi.ipweather.infrastructure
 
-import com.nmincuzzi.ipweather.representation.WeatherRepresentation
-import com.nmincuzzi.ipweather.service.CurrentWeatherService
+import com.nmincuzzi.ipweather.application.GetCurrentWeather
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
@@ -9,10 +8,10 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
-class WeatherControllerTest {
+class WeatherResourceTest {
 
     @MockK
-    lateinit var currentWeatherService: CurrentWeatherService
+    lateinit var getCurrentWeather: GetCurrentWeather
 
     @BeforeEach
     fun setUp() {
@@ -29,10 +28,10 @@ class WeatherControllerTest {
             "temp_max",
             "humidity"
         )
-        every { currentWeatherService.retrieveWeather("Milan") } returns weatherRepresentation
+        every { getCurrentWeather.retrieveBy("Milan") } returns weatherRepresentation
 
-        val weatherController = WeatherController(currentWeatherService)
-        val result = weatherController.weather("Milan")
+        val weatherResource = WeatherResource(getCurrentWeather)
+        val result = weatherResource.weather("Milan")
         assertEquals(200, result.statusCodeValue)
         assertEquals("Clear sky", result.body!!.forecast)
     }

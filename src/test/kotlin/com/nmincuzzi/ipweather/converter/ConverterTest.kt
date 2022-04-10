@@ -1,6 +1,6 @@
 package com.nmincuzzi.ipweather.converter
 
-import com.nmincuzzi.ipweather.model.IpStackModel
+import com.nmincuzzi.ipweather.domain.Locale
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
@@ -10,15 +10,15 @@ class ConverterTest {
     @Test
     fun testToLocationRepresentation() {
 
-        val ipStackModel = IpStackModel(
-                "countryCode",
-                "countryName",
-                "regionCode",
-                "regionName",
-                "city",
-                "zip",
-                "latitude",
-                "longitude"
+        val ipStackModel = Locale(
+            "countryCode",
+            "countryName",
+            "regionCode",
+            "regionName",
+            "city",
+            "zip",
+            "latitude",
+            "longitude"
         )
         val result = ipStackModel.toLocationRepresentation()
         assertAll("result",

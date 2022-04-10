@@ -1,7 +1,6 @@
-package com.nmincuzzi.ipweather.controller
+package com.nmincuzzi.ipweather.infrastructure
 
-import com.nmincuzzi.ipweather.representation.WeatherRepresentation
-import com.nmincuzzi.ipweather.service.CurrentWeatherService
+import com.nmincuzzi.ipweather.application.GetCurrentWeather
 import org.springframework.http.MediaType.APPLICATION_JSON_VALUE
 import org.springframework.http.ResponseEntity
 import org.springframework.util.DigestUtils
@@ -10,11 +9,11 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class WeatherController(private val currentWeatherService: CurrentWeatherService) {
+class WeatherResource(private val getCurrentWeather: GetCurrentWeather) {
 
     @GetMapping("/city/{city}/weather", APPLICATION_JSON_VALUE)
     fun weather(@PathVariable(value = "city") city: String): ResponseEntity<WeatherRepresentation> {
-        val currentWeather = currentWeatherService.retrieveWeather(city)
+        val currentWeather = getCurrentWeather.retrieveBy(city)
 
         //Client-side Cache Validation
         /*val cacheControl = CacheControl.maxAge(30, TimeUnit.MINUTES)

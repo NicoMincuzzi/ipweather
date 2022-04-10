@@ -1,7 +1,7 @@
-package com.nmincuzzi.ipweather.controller
+package com.nmincuzzi.ipweather.infrastructure
 
+import com.nmincuzzi.ipweather.application.GetLocation
 import com.nmincuzzi.ipweather.builders.LocationRepresentationBuilder
-import com.nmincuzzi.ipweather.service.LocationService
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
@@ -10,10 +10,10 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.mock.web.MockHttpServletRequest
 
-class LocationControllerTest {
+class LocationResourceTest {
 
     @MockK
-    lateinit var locationService: LocationService
+    lateinit var locationService: GetLocation
 
     @BeforeEach
     fun setUp() {
@@ -24,10 +24,9 @@ class LocationControllerTest {
     fun retrieveCityGivenAIpAddress() {
         val location = LocationRepresentationBuilder().city("Milan").build()
 
-        every { locationService.retrieveIpAddress(null, "127.0.0.1") } returns "127.0.0.1"
-        every { locationService.retrieveLocation("127.0.0.1") } returns location
+        every { locationService.by("127.0.0.1") } returns location
 
-        val locationController = LocationController(locationService)
+        val locationController = LocationResource(locationService)
         val result = locationController.location(MockHttpServletRequest())
 
         assertEquals("Milan", result.city)

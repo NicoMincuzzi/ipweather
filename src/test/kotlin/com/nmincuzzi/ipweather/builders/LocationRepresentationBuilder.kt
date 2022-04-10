@@ -1,6 +1,6 @@
 package com.nmincuzzi.ipweather.builders
 
-import com.nmincuzzi.ipweather.representation.LocationRepresentation
+import com.nmincuzzi.ipweather.infrastructure.LocationRepresentation
 
 class LocationRepresentationBuilder {
 

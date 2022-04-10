@@ -1,9 +1,9 @@
-package com.nmincuzzi.ipweather.service
+package com.nmincuzzi.ipweather.application
 
 import com.nmincuzzi.ipweather.adapter.OpenWeatherMap
-import com.nmincuzzi.ipweather.model.Main
-import com.nmincuzzi.ipweather.model.OpenWeatherMapModel
-import com.nmincuzzi.ipweather.model.Weather
+import com.nmincuzzi.ipweather.domain.Main
+import com.nmincuzzi.ipweather.domain.OpenWeatherMapModel
+import com.nmincuzzi.ipweather.domain.Weather
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 
-class CurrentWeatherServiceTest {
+class GetCurrentWeatherTest {
 
     @MockK
     lateinit var openWeatherMap: OpenWeatherMap
@@ -29,8 +29,8 @@ class CurrentWeatherServiceTest {
         val openWeatherMapModel = OpenWeatherMapModel(weather, main)
         every { openWeatherMap.execute("Milan") } returns openWeatherMapModel
 
-        val currentWeatherService = CurrentWeatherService(openWeatherMap)
-        val result = currentWeatherService.retrieveWeather("Milan")
+        val getCurrentWeather = GetCurrentWeather(openWeatherMap)
+        val result = getCurrentWeather.retrieveBy("Milan")
         assertEquals("Clean Sky", result.forecast)
     }
 }

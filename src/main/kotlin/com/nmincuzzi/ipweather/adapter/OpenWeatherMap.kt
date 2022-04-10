@@ -5,9 +5,9 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.node.ObjectNode
 import com.fasterxml.jackson.module.kotlin.treeToValue
 import com.nmincuzzi.ipweather.expection.GenericError
-import com.nmincuzzi.ipweather.model.Main
-import com.nmincuzzi.ipweather.model.OpenWeatherMapModel
-import com.nmincuzzi.ipweather.model.Weather
+import com.nmincuzzi.ipweather.domain.Main
+import com.nmincuzzi.ipweather.domain.OpenWeatherMapModel
+import com.nmincuzzi.ipweather.domain.Weather
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpEntity
 import org.springframework.http.HttpHeaders

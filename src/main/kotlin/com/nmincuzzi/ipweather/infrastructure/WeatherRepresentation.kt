@@ -1,4 +1,4 @@
-package com.nmincuzzi.ipweather.representation
+package com.nmincuzzi.ipweather.infrastructure
 
 data class WeatherRepresentation(
     val forecast: String,

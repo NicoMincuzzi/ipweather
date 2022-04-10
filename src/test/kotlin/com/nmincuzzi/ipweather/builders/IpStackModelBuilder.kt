@@ -1,6 +1,6 @@
 package com.nmincuzzi.ipweather.builders
 
-import com.nmincuzzi.ipweather.model.IpStackModel
+import com.nmincuzzi.ipweather.domain.Locale
 
 class IpStackModelBuilder {
 
@@ -11,8 +11,8 @@ class IpStackModelBuilder {
         return this
     }
 
-    fun build(): IpStackModel {
-        return IpStackModel(
+    fun build(): Locale {
+        return Locale(
             "ignore",
             "ignore",
             "ignore",
