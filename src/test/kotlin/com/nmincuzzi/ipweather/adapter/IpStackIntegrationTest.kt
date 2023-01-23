@@ -3,6 +3,7 @@ package com.nmincuzzi.ipweather.adapter
 import com.github.tomakehurst.wiremock.client.WireMock.*
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMockConfig
 import com.github.tomakehurst.wiremock.junit5.WireMockExtension
+import com.nmincuzzi.ipweather.infrastructure.IpStackAdapter
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.RegisterExtension
@@ -11,7 +12,7 @@ import org.springframework.web.client.RestTemplate
 
 class DeclarativeWireMockTest {
     @RegisterExtension
-    var wireMockExtension: WireMockExtension = WireMockExtension.newInstance()
+    val wireMockExtension: WireMockExtension = WireMockExtension.newInstance()
         .options(wireMockConfig().dynamicPort())
         .build()
 
@@ -30,7 +31,11 @@ class DeclarativeWireMockTest {
         )
 
 
-        val adapter = IpStack(RestTemplate(), "http://localhost:$port/", "123")
+        val adapter = IpStackAdapter(
+            RestTemplate(),
+            "http://localhost:$port/",
+            "123"
+        )
         val result = adapter.execute("127.0.0.1")
         Assertions.assertEquals("\"city\"", result.city)
     }

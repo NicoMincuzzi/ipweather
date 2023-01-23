@@ -1,6 +1,6 @@
 package com.nmincuzzi.ipweather.infrastructure
 
-import com.nmincuzzi.ipweather.application.GetLocation
+import com.nmincuzzi.ipweather.usecase.GetLocation
 import com.nmincuzzi.ipweather.builders.LocationRepresentationBuilder
 import io.mockk.MockKAnnotations
 import io.mockk.every

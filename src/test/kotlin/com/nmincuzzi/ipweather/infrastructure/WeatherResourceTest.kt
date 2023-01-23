@@ -1,6 +1,6 @@
 package com.nmincuzzi.ipweather.infrastructure
 
-import com.nmincuzzi.ipweather.application.GetCurrentWeather
+import com.nmincuzzi.ipweather.usecase.GetCurrentWeather
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.MockK

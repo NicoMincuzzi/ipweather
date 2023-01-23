@@ -1,10 +1,10 @@
-package com.nmincuzzi.ipweather.adapter
+package com.nmincuzzi.ipweather.infrastructure
 
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.node.ObjectNode
 import com.fasterxml.jackson.module.kotlin.treeToValue
-import com.nmincuzzi.ipweather.expection.GenericError
+import com.nmincuzzi.ipweather.domain.GenericError
 import com.nmincuzzi.ipweather.domain.Main
 import com.nmincuzzi.ipweather.domain.OpenWeatherMapModel
 import com.nmincuzzi.ipweather.domain.Weather
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component
 import org.springframework.web.client.RestTemplate
 
 @Component
-class OpenWeatherMap(
+class OpenWeatherMapAdapter(
     private val restTemplate: RestTemplate,
     @Value("\${openstackmap.url}") private val host: String,
     @Value("\${openstackmap.app_id}") private val appId: String

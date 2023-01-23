@@ -2,6 +2,7 @@ package com.nmincuzzi.ipweather.adapter
 
 import com.fasterxml.jackson.databind.node.ObjectNode
 import com.nmincuzzi.ipweather.builders.IpStackResponseBodyBuilder
+import com.nmincuzzi.ipweather.infrastructure.IpStackAdapter
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
@@ -13,7 +14,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.client.RestTemplate
 
 
-class IpStackTest {
+class IpStackAdapterTest {
 
     @MockK
     lateinit var restTemplate: RestTemplate
@@ -31,7 +32,11 @@ class IpStackTest {
             restTemplate.getForEntity("http://localhost:8080/127.0.0.1?access_key=123", ObjectNode::class.java)
         } returns response
 
-        val result = IpStack(restTemplate, "http://localhost:8080/", "123").execute("127.0.0.1")
+        val result = IpStackAdapter(
+            restTemplate,
+            "http://localhost:8080/",
+            "123"
+        ).execute("127.0.0.1")
         assertEquals("\"Milan\"", result.city)
     }
 }

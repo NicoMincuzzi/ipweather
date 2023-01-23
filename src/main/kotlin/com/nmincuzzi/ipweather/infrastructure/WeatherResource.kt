@@ -1,6 +1,6 @@
 package com.nmincuzzi.ipweather.infrastructure
 
-import com.nmincuzzi.ipweather.application.GetCurrentWeather
+import com.nmincuzzi.ipweather.usecase.GetCurrentWeather
 import org.springframework.http.MediaType.APPLICATION_JSON_VALUE
 import org.springframework.http.ResponseEntity
 import org.springframework.util.DigestUtils

@@ -1,7 +1,7 @@
-package com.nmincuzzi.ipweather.adapter;
+package com.nmincuzzi.ipweather.infrastructure;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.nmincuzzi.ipweather.expection.GenericError;
+import com.nmincuzzi.ipweather.domain.GenericError;
 import com.nmincuzzi.ipweather.domain.Locale;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,14 +13,14 @@ import static com.nmincuzzi.ipweather.domain.Locale.to;
 
 @Slf4j
 @Component
-public class IpStack {
+public class IpStackAdapter {
     private final RestTemplate restTemplate;
     private final String host;
     private final String accessKey;
 
-    public IpStack(RestTemplate restTemplate,
-                   @Value("${ipstack.url}") String host,
-                   @Value("${ipstack.access_key}") String accessKey) {
+    public IpStackAdapter(RestTemplate restTemplate,
+                          @Value("${ipstack.url}") String host,
+                          @Value("${ipstack.access_key}") String accessKey) {
         this.restTemplate = restTemplate;
         this.host = host;
         this.accessKey = accessKey;

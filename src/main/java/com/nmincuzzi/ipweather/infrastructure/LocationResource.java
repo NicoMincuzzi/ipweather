@@ -1,7 +1,7 @@
 package com.nmincuzzi.ipweather.infrastructure;
 
-import com.nmincuzzi.ipweather.application.GetLocation;
-import com.nmincuzzi.ipweather.expection.GenericError;
+import com.nmincuzzi.ipweather.usecase.GetLocation;
+import com.nmincuzzi.ipweather.domain.GenericError;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

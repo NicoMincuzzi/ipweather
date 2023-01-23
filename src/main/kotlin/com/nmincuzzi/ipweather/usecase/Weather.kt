@@ -1,4 +1,4 @@
-package com.nmincuzzi.ipweather.application
+package com.nmincuzzi.ipweather.usecase
 
 import com.nmincuzzi.ipweather.infrastructure.WeatherRepresentation
 

@@ -1,3 +1,3 @@
-package com.nmincuzzi.ipweather.expection
+package com.nmincuzzi.ipweather.domain
 
 class AdapterResponseDeserializeException : Exception()
