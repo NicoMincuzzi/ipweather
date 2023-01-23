@@ -18,17 +18,22 @@ repositories {
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web:2.6.3")
+
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.3")
+
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.6.10")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.6.10")
+
     implementation("org.projectlombok:lombok:1.18.24")
+
     implementation("org.springdoc:springdoc-openapi-ui:1.6.9")
+
     testImplementation("org.springframework.boot:spring-boot-starter-test:2.6.3") {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
     }
     testImplementation("io.mockk:mockk:1.12.4")
     testImplementation("org.assertj:assertj-core:3.23.1")
-    testImplementation("com.github.tomakehurst:wiremock-jre8:2.33.2")
+    testImplementation("com.github.tomakehurst:wiremock-jre8:2.35.0")
 }
 
 tasks.test {
