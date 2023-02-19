@@ -1,10 +1,10 @@
 package com.nmincuzzi.ipweather.domain
 
-import com.nmincuzzi.ipweather.infrastructure.WeatherRepresentation
+import com.nmincuzzi.ipweather.infrastructure.WeatherResponse
 
 data class OpenWeatherMapModel(val weather: Weather?, val main: Main?) {
-    fun toWeatherRepresentation(): WeatherRepresentation {
-        return WeatherRepresentation(
+    fun toWeatherRepresentation(): WeatherResponse {
+        return WeatherResponse(
             forecast = weather?.description ?: "N/A",
             temp = (main?.temp ?: "N/A").toString(),
             feels_like = (main?.feelsLike ?: "N/A").toString(),

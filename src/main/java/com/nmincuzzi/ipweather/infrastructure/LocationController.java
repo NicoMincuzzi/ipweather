@@ -1,23 +1,23 @@
 package com.nmincuzzi.ipweather.infrastructure;
 
-import com.nmincuzzi.ipweather.usecase.GetLocation;
 import com.nmincuzzi.ipweather.domain.GenericError;
-import org.springframework.http.MediaType;
+import com.nmincuzzi.ipweather.usecase.GetLocation;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import jakarta.servlet.http.HttpServletRequest;
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
-class LocationResource {
+class LocationController {
     private final GetLocation location;
 
-    public LocationResource(GetLocation location) {
+    public LocationController(GetLocation location) {
         this.location = location;
     }
 
-    @GetMapping(value = "/location", produces = MediaType.APPLICATION_JSON_VALUE)
-    public LocationRepresentation location(HttpServletRequest request) throws GenericError {
+    @GetMapping(value = "/location", produces = APPLICATION_JSON_VALUE)
+    public LocationResponse location(HttpServletRequest request) throws GenericError {
 
         String ipAddress = retrieveIpAddress(request.getHeader("X-FORWARDED-FOR"), request.getRemoteAddr());
         return location.by(ipAddress);

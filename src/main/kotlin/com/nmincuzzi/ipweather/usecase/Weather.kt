@@ -1,7 +1,7 @@
 package com.nmincuzzi.ipweather.usecase
 
-import com.nmincuzzi.ipweather.infrastructure.WeatherRepresentation
+import com.nmincuzzi.ipweather.infrastructure.WeatherResponse
 
 interface Weather {
-    fun retrieveBy(city: String): WeatherRepresentation
+    fun retrieveBy(city: String): WeatherResponse
 }

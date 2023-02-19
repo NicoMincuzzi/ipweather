@@ -1,6 +1,6 @@
 package com.nmincuzzi.ipweather.infrastructure;
 
-public class LocationRepresentation {
+public class LocationResponse {
     private final String countryCode;
     private final String countryName;
     private final String regionCode;
@@ -10,7 +10,7 @@ public class LocationRepresentation {
     private final String latitude;
     private final String longitude;
 
-    public LocationRepresentation(String countryCode, String countryName, String regionCode, String regionName, String city, String zip, String latitude, String longitude) {
+    public LocationResponse(String countryCode, String countryName, String regionCode, String regionName, String city, String zip, String latitude, String longitude) {
         this.countryCode = countryCode;
         this.countryName = countryName;
         this.regionCode = regionCode;

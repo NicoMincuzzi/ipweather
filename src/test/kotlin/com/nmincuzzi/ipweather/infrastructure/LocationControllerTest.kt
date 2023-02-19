@@ -10,7 +10,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.mock.web.MockHttpServletRequest
 
-class LocationResourceTest {
+class LocationControllerTest {
 
     @MockK
     lateinit var locationService: GetLocation
@@ -26,7 +26,8 @@ class LocationResourceTest {
 
         every { locationService.by("127.0.0.1") } returns location
 
-        val locationController = LocationResource(locationService)
+        val locationController =
+            LocationController(locationService)
         val result = locationController.location(MockHttpServletRequest())
 
         assertEquals("Milan", result.city)

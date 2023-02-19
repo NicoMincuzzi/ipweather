@@ -1,13 +1,13 @@
 package com.nmincuzzi.ipweather.converter
 
 import com.nmincuzzi.ipweather.domain.Locale
-import com.nmincuzzi.ipweather.infrastructure.LocationRepresentation
+import com.nmincuzzi.ipweather.infrastructure.LocationResponse
 
 /*Extension Functions
 * https://kotlinlang.org/docs/reference/extensions.html
 */
 fun Locale.toLocationRepresentation() =
-    LocationRepresentation(
+    LocationResponse(
         countryCode,
         countryName,
         regionCode,

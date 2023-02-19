@@ -1,6 +1,6 @@
 package com.nmincuzzi.ipweather.builders
 
-import com.nmincuzzi.ipweather.infrastructure.LocationRepresentation
+import com.nmincuzzi.ipweather.infrastructure.LocationResponse
 
 class LocationRepresentationBuilder {
 
@@ -11,8 +11,8 @@ class LocationRepresentationBuilder {
         return this
     }
 
-    fun build(): LocationRepresentation {
-        return LocationRepresentation(
+    fun build(): LocationResponse {
+        return LocationResponse(
             "IT",
             "Italy",
             "ignore",

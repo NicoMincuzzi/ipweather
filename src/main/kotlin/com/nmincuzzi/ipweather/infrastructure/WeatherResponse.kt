@@ -1,6 +1,6 @@
 package com.nmincuzzi.ipweather.infrastructure
 
-data class WeatherRepresentation(
+data class WeatherResponse(
     val forecast: String,
     val temp: String,
     val feels_like: String,
