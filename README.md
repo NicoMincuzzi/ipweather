@@ -3,7 +3,7 @@
 [![codecov](https://codecov.io/gh/NicoMincuzzi/ipweather/branch/master/graph/badge.svg?token=ZIFQSMBMGR)](https://codecov.io/gh/NicoMincuzzi/ipweather)
 ![GitHub repo size](https://img.shields.io/github/repo-size/NicoMincuzzi/ipweather)
 
-`ipweather` is based on Spring Boot framework using both Kotlin and Java languages, which allows to retrieve the current weather using your public IP address.
+`ipweather` is based on [Spring Boot framework](https://spring.io/) and the languages Kotlin and Java, which allows to retrieve the current weather using your public IP address.
 
 ## How to Contribute
 
