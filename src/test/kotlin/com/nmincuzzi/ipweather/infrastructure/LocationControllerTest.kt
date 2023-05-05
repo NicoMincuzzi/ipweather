@@ -23,12 +23,12 @@ class LocationControllerTest {
     @Test
     fun retrieveCityGivenAIpAddress() {
         val location = LocationRepresentationBuilder().city("Milan").build()
+        every { locationService.by("0.0.0.0") } returns location
+        val locationController = LocationController(locationService)
+        val httpServletRequest = MockHttpServletRequest()
+        httpServletRequest.addHeader("X-FORWARDED-FOR", "0.0.0.0, 1.1.1.1")
 
-        every { locationService.by("127.0.0.1") } returns location
-
-        val locationController =
-            LocationController(locationService)
-        val result = locationController.location(MockHttpServletRequest())
+        val result = locationController.location(httpServletRequest)
 
         assertEquals("Milan", result.city)
     }

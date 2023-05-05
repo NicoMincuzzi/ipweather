@@ -2,6 +2,7 @@ package com.nmincuzzi.ipweather.infrastructure;
 
 import com.nmincuzzi.ipweather.domain.GenericError;
 import com.nmincuzzi.ipweather.usecase.GetLocation;
+import io.micrometer.common.util.StringUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,15 +20,15 @@ class LocationController {
     @GetMapping(value = "/location", produces = APPLICATION_JSON_VALUE)
     public LocationResponse location(HttpServletRequest request) throws GenericError {
 
-        String ipAddress = retrieveIpAddress(request.getHeader("X-FORWARDED-FOR"), request.getRemoteAddr());
+        String ipAddress = retrieveIpAddress(request.getHeader("X-FORWARDED-FOR"));
         return location.by(ipAddress);
     }
 
-    private String retrieveIpAddress(String xForwardedForHeader, String remoteAddress) {
-        String ipAddress = xForwardedForHeader;
-        if (ipAddress == null || ipAddress.isBlank()) {
-            ipAddress = remoteAddress;
+    private String retrieveIpAddress(String xForwardedForHeader) {
+        String ipAddress = xForwardedForHeader.split(",")[0];
+        if (!StringUtils.isBlank(ipAddress)) {
+            return ipAddress;
         }
-        return ipAddress;
+        return "";
     }
 }
