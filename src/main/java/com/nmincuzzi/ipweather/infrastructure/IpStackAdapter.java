@@ -1,7 +1,6 @@
 package com.nmincuzzi.ipweather.infrastructure;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.nmincuzzi.ipweather.domain.GenericError;
 import com.nmincuzzi.ipweather.domain.Locale;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,13 +25,13 @@ public class IpStackAdapter {
         this.accessKey = accessKey;
     }
 
-    public Locale execute(String ipAddress) throws GenericError {
+    public Locale execute(String ipAddress) {
         String url = host + ipAddress + "?" + "access_key=" + accessKey;
         ResponseEntity<ObjectNode> response = restTemplate.getForEntity(url, ObjectNode.class);
 
         if (response.getStatusCode().is2xxSuccessful() && response.getBody() != null) {
             return to(response.getBody());
         }
-        throw new GenericError();
+        throw new RuntimeException();
     }
 }

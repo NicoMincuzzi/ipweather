@@ -1,8 +1,7 @@
 package com.nmincuzzi.ipweather.usecase;
 
-import com.nmincuzzi.ipweather.infrastructure.IpStackAdapter;
 import com.nmincuzzi.ipweather.domain.Locale;
-import com.nmincuzzi.ipweather.domain.GenericError;
+import com.nmincuzzi.ipweather.infrastructure.IpStackAdapter;
 import com.nmincuzzi.ipweather.infrastructure.LocationResponse;
 import org.springframework.stereotype.Component;
 
@@ -16,8 +15,12 @@ public class GetLocation {
         this.ipStackAdapter = ipStackAdapter;
     }
 
-    public LocationResponse by(String ipAddress) throws GenericError {
-        Locale locale = ipStackAdapter.execute(ipAddress);
-        return toLocationRepresentation(locale);
+    public LocationResponse by(String ipAddress) {
+        try {
+            Locale locale = ipStackAdapter.execute(ipAddress);
+            return toLocationRepresentation(locale);
+        } catch (Exception e) {
+            throw new RuntimeException();
+        }
     }
 }

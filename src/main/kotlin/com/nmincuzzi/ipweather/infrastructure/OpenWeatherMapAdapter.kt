@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.node.ObjectNode
 import com.fasterxml.jackson.module.kotlin.treeToValue
-import com.nmincuzzi.ipweather.domain.GenericError
 import com.nmincuzzi.ipweather.domain.Main
 import com.nmincuzzi.ipweather.domain.OpenWeatherMapModel
 import com.nmincuzzi.ipweather.domain.Weather
@@ -30,7 +29,7 @@ class OpenWeatherMapAdapter(
         if (response.statusCode.is2xxSuccessful && response.body != null) {
             return toModel(response.body!!)
         }
-        throw GenericError()
+        throw RuntimeException()
     }
 
     private fun buildHttpEntity(): HttpEntity<HttpHeaders> {

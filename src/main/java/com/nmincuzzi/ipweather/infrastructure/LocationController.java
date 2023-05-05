@@ -1,6 +1,5 @@
 package com.nmincuzzi.ipweather.infrastructure;
 
-import com.nmincuzzi.ipweather.domain.GenericError;
 import com.nmincuzzi.ipweather.usecase.GetLocation;
 import io.micrometer.common.util.StringUtils;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,7 +17,7 @@ class LocationController {
     }
 
     @GetMapping(value = "/location", produces = APPLICATION_JSON_VALUE)
-    public LocationResponse location(HttpServletRequest request) throws GenericError {
+    public LocationResponse location(HttpServletRequest request) {
 
         String ipAddress = retrieveIpAddress(request.getHeader("X-FORWARDED-FOR"));
         return location.by(ipAddress);
