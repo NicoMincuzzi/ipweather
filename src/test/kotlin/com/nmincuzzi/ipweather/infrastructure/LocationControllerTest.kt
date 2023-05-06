@@ -1,6 +1,6 @@
 package com.nmincuzzi.ipweather.infrastructure
 
-import com.nmincuzzi.ipweather.usecase.GetLocation
+import com.nmincuzzi.ipweather.usecase.GetLocationByIpAddress
 import com.nmincuzzi.ipweather.builders.LocationRepresentationBuilder
 import io.mockk.MockKAnnotations
 import io.mockk.every
@@ -13,7 +13,7 @@ import org.springframework.mock.web.MockHttpServletRequest
 class LocationControllerTest {
 
     @MockK
-    lateinit var locationService: GetLocation
+    lateinit var locationService: GetLocationByIpAddress
 
     @BeforeEach
     fun setUp() {
@@ -23,7 +23,7 @@ class LocationControllerTest {
     @Test
     fun retrieveCityGivenAIpAddress() {
         val location = LocationRepresentationBuilder().city("Milan").build()
-        every { locationService.by("0.0.0.0") } returns location
+        every { locationService.execute("0.0.0.0") } returns location
         val locationController = LocationController(locationService)
         val httpServletRequest = MockHttpServletRequest()
         httpServletRequest.addHeader("X-FORWARDED-FOR", "0.0.0.0, 1.1.1.1")

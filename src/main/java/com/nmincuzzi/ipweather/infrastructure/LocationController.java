@@ -1,6 +1,6 @@
 package com.nmincuzzi.ipweather.infrastructure;
 
-import com.nmincuzzi.ipweather.usecase.GetLocation;
+import com.nmincuzzi.ipweather.usecase.GetLocationByIpAddress;
 import io.micrometer.common.util.StringUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,9 +10,9 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
 class LocationController {
-    private final GetLocation location;
+    private final GetLocationByIpAddress location;
 
-    public LocationController(GetLocation location) {
+    public LocationController(GetLocationByIpAddress location) {
         this.location = location;
     }
 
@@ -20,7 +20,7 @@ class LocationController {
     public LocationResponse location(HttpServletRequest request) {
 
         String ipAddress = retrieveIpAddress(request.getHeader("X-FORWARDED-FOR"));
-        return location.by(ipAddress);
+        return location.execute(ipAddress);
     }
 
     private String retrieveIpAddress(String xForwardedForHeader) {

@@ -8,9 +8,10 @@ import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.RegisterExtension
 import org.springframework.web.client.RestTemplate
+import java.net.URL
 
 
-class DeclarativeWireMockTest {
+class IpStackAdapterTest {
     @RegisterExtension
     val wireMockExtension: WireMockExtension = WireMockExtension.newInstance()
         .options(wireMockConfig().dynamicPort())

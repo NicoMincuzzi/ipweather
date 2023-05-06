@@ -5,22 +5,22 @@ import com.nmincuzzi.ipweather.infrastructure.IpStackAdapter;
 import com.nmincuzzi.ipweather.infrastructure.LocationResponse;
 import org.springframework.stereotype.Component;
 
-import static com.nmincuzzi.ipweather.converter.ConverterKt.toLocationRepresentation;
+import static com.nmincuzzi.ipweather.infrastructure.ConverterKt.toLocationRepresentation;
 
 @Component
-public class GetLocation {
+public class GetLocationByIpAddress {
     private final IpStackAdapter ipStackAdapter;
 
-    public GetLocation(IpStackAdapter ipStackAdapter) {
+    public GetLocationByIpAddress(IpStackAdapter ipStackAdapter) {
         this.ipStackAdapter = ipStackAdapter;
     }
 
-    public LocationResponse by(String ipAddress) {
+    public LocationResponse execute(String ipAddress) {
         try {
             Locale locale = ipStackAdapter.execute(ipAddress);
             return toLocationRepresentation(locale);
         } catch (Exception e) {
-            throw new RuntimeException();
+            throw new RuntimeException(e);
         }
     }
 }

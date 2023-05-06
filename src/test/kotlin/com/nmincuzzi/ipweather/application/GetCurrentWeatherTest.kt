@@ -30,7 +30,7 @@ class GetCurrentWeatherTest {
         every { openWeatherMapAdapter.execute("Milan") } returns openWeatherMapModel
 
         val getCurrentWeather = GetCurrentWeather(openWeatherMapAdapter)
-        val result = getCurrentWeather.retrieveBy("Milan")
+        val result = getCurrentWeather.execute("Milan")
         assertEquals("Clean Sky", result.forecast)
     }
 }

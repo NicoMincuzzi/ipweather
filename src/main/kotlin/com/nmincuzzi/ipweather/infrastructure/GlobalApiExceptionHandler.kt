@@ -1,7 +1,8 @@
 package com.nmincuzzi.ipweather.infrastructure
 
 import com.nmincuzzi.ipweather.domain.exception.IpWeatherException
-import lombok.extern.slf4j.Slf4j
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.core.Ordered
 import org.springframework.core.annotation.Order
 import org.springframework.http.HttpStatus.*
@@ -14,12 +15,13 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 @Order(Ordered.HIGHEST_PRECEDENCE)
 @ControllerAdvice
-@Slf4j
 class GlobalApiExceptionHandler : ResponseEntityExceptionHandler() {
 
+    private val log: Logger = LoggerFactory.getLogger(GlobalApiExceptionHandler::class.java)
+
     @ExceptionHandler(value = [Exception::class])
-    fun handleUncaughtException(ex: Exception?, request: ServletWebRequest?): ResponseEntity<Any> {
-        //log(ex, request)
+    fun handleUncaughtException(e: Exception, request: ServletWebRequest?): ResponseEntity<Any> {
+        log.error(e.message + " " + request, e)
         val errorResponseDto = ErrorResponse(
             Exception::class.java.simpleName,
             INTERNAL_SERVER_ERROR.reasonPhrase,
@@ -29,12 +31,9 @@ class GlobalApiExceptionHandler : ResponseEntityExceptionHandler() {
     }
 
     @ExceptionHandler(value = [IpWeatherException::class])
-    fun handleCustomUncaughtBusinessException(
-        ex: IpWeatherException,
-        request: ServletWebRequest?
-    ): ResponseEntity<Any> {
-        //log(ex, request)
-        val errorResponseDto = ErrorResponse(ex.code, ex.message, ex.httpStatus)
-        return ResponseEntity.status(ex.httpStatus).body(errorResponseDto)
+    fun handleCustomUncaughtBusinessException(e: IpWeatherException, request: ServletWebRequest?): ResponseEntity<Any> {
+        log.error(e.message + " " + request, e)
+        val errorResponseDto = ErrorResponse(e.code, e.message, e.httpStatus)
+        return ResponseEntity.status(e.httpStatus).body(errorResponseDto)
     }
 }

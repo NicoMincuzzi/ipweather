@@ -41,7 +41,7 @@ class WeatherControllerTest {
             "temp_max",
             "humidity"
         )
-        every { getCurrentWeather.retrieveBy("Milan") } returns response
+        every { getCurrentWeather.execute("Milan") } returns response
 
         val weatherController = WeatherController(getCurrentWeather)
         val result = weatherController.weather("Milan")
@@ -59,7 +59,7 @@ class WeatherControllerTest {
             "temp_max",
             "humidity"
         )
-        every { getCurrentWeather.retrieveBy("Bari") } returns weatherResponse
+        every { getCurrentWeather.execute("Bari") } returns weatherResponse
 
         val response = restTemplate.getForEntity("/city/Bari/weather", WeatherResponse::class.java)
 
@@ -76,7 +76,7 @@ class WeatherControllerTest {
             "temp_max",
             "humidity"
         )
-        every { getCurrentWeather.retrieveBy("Bari") } returns weatherResponse
+        every { getCurrentWeather.execute("Bari") } returns weatherResponse
         val response: ResponseEntity<WeatherResponse> =
             restTemplate.getForEntity("/city/Bari/weather", WeatherResponse::class.java)
         val etagValue = response.headers["ETag"]
@@ -101,7 +101,7 @@ class WeatherControllerTest {
             "temp_max",
             "humidity"
         )
-        every { getCurrentWeather.retrieveBy("Bari") } returns weatherResponse
+        every { getCurrentWeather.execute("Bari") } returns weatherResponse
         val response: ResponseEntity<WeatherResponse> =
             restTemplate.getForEntity("/city/Bari/weather", WeatherResponse::class.java)
         val etagValue = response.headers["ETag"]
@@ -114,7 +114,7 @@ class WeatherControllerTest {
             "temp_max",
             "humidity"
         )
-        every { getCurrentWeather.retrieveBy("Bari") } returns weatherResponse
+        every { getCurrentWeather.execute("Bari") } returns weatherResponse
 
         val headers = HttpHeaders()
         headers["If-None-Match"] = etagValue

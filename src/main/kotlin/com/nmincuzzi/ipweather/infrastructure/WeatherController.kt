@@ -12,7 +12,7 @@ class WeatherController(private val getCurrentWeather: GetCurrentWeather) {
 
     @GetMapping("/city/{city}/weather", APPLICATION_JSON_VALUE)
     fun weather(@PathVariable(value = "city") city: String): ResponseEntity<WeatherResponse> {
-        val currentWeather = getCurrentWeather.retrieveBy(city)
+        val currentWeather = getCurrentWeather.execute(city)
 
         //Client-side Cache Validation
         /*val cacheControl = CacheControl.maxAge(30, TimeUnit.MINUTES)

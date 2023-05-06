@@ -11,9 +11,8 @@ class GetCurrentWeather(private val openWeatherMapAdapter: OpenWeatherMapAdapter
 
     private val log: Logger = LoggerFactory.getLogger(GetCurrentWeather::class.java)
 
-    override fun retrieveBy(city: String): WeatherResponse {
+    override fun execute(city: String): WeatherResponse {
         val openWeatherMap = openWeatherMapAdapter.execute(city)
-        log.info("Current weather in {}: {}", city, openWeatherMap)
 
         return openWeatherMap.toWeatherRepresentation()
     }

@@ -9,7 +9,7 @@ class ForecastWeather : Weather {
 
     private val log = LoggerFactory.getLogger(ForecastWeather::class.java)
 
-    override fun retrieveBy(city: String): WeatherResponse {
+    override fun execute(city: String): WeatherResponse {
         TODO("Not yet implemented")
     }
 }
