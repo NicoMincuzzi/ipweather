@@ -1,4 +1,4 @@
-package com.nmincuzzi.ipweather.converter
+package com.nmincuzzi.ipweather.infrastructure
 
 import com.nmincuzzi.ipweather.domain.Locale
 import com.nmincuzzi.ipweather.infrastructure.LocationResponse

@@ -1,6 +1,7 @@
 package com.nmincuzzi.ipweather.converter
 
 import com.nmincuzzi.ipweather.domain.Locale
+import com.nmincuzzi.ipweather.infrastructure.toLocationRepresentation
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
