@@ -5,6 +5,7 @@ plugins {
     id("io.spring.dependency-management") version "1.1.0"
     kotlin("jvm") version "1.8.10"
     kotlin("plugin.spring") version "1.8.10"
+    id ("org.jetbrains.kotlin.plugin.jpa") version "1.8.10"
     jacoco
 }
 
@@ -18,6 +19,9 @@ repositories {
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+
+    runtimeOnly("org.postgresql:postgresql:42.6.0")
 
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.3")
 
@@ -35,7 +39,6 @@ dependencies {
     testImplementation("org.assertj:assertj-core:3.23.1")
     testImplementation("com.github.tomakehurst:wiremock-jre8-standalone:2.35.0")
 }
-
 
 tasks.withType<KotlinCompile> {
     kotlinOptions {

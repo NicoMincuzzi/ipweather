@@ -1,6 +1,5 @@
 package com.nmincuzzi.ipweather.domain
 
-import com.nmincuzzi.ipweather.domain.Locale
 import com.nmincuzzi.ipweather.infrastructure.LocationResponse
 
 /*Extension Functions
