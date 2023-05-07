@@ -1,6 +1,6 @@
 package com.nmincuzzi.ipweather.usecase
 
-import com.nmincuzzi.ipweather.infrastructure.OpenWeatherMapAdapter
+import com.nmincuzzi.ipweather.infrastructure.adapter.OpenWeatherMapAdapter
 import com.nmincuzzi.ipweather.infrastructure.WeatherResponse
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory

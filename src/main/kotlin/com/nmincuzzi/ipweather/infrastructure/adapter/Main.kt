@@ -1,4 +1,4 @@
-package com.nmincuzzi.ipweather.domain
+package com.nmincuzzi.ipweather.infrastructure.adapter
 
 import com.fasterxml.jackson.annotation.JsonProperty
 

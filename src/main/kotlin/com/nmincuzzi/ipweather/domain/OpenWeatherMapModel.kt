@@ -1,6 +1,8 @@
 package com.nmincuzzi.ipweather.domain
 
 import com.nmincuzzi.ipweather.infrastructure.WeatherResponse
+import com.nmincuzzi.ipweather.infrastructure.adapter.Main
+import com.nmincuzzi.ipweather.infrastructure.adapter.Weather
 
 data class OpenWeatherMapModel(val weather: Weather?, val main: Main?) {
     fun toWeatherRepresentation(): WeatherResponse {

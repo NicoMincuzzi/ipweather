@@ -1,9 +1,9 @@
 package com.nmincuzzi.ipweather.application
 
-import com.nmincuzzi.ipweather.domain.Main
+import com.nmincuzzi.ipweather.infrastructure.adapter.Main
 import com.nmincuzzi.ipweather.domain.OpenWeatherMapModel
-import com.nmincuzzi.ipweather.domain.Weather
-import com.nmincuzzi.ipweather.infrastructure.OpenWeatherMapAdapter
+import com.nmincuzzi.ipweather.infrastructure.adapter.Weather
+import com.nmincuzzi.ipweather.infrastructure.adapter.OpenWeatherMapAdapter
 import com.nmincuzzi.ipweather.usecase.GetCurrentWeather
 import io.mockk.MockKAnnotations
 import io.mockk.every

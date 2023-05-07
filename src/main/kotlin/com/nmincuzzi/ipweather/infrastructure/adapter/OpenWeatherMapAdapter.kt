@@ -1,12 +1,10 @@
-package com.nmincuzzi.ipweather.infrastructure
+package com.nmincuzzi.ipweather.infrastructure.adapter
 
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.node.ObjectNode
 import com.fasterxml.jackson.module.kotlin.treeToValue
-import com.nmincuzzi.ipweather.domain.Main
 import com.nmincuzzi.ipweather.domain.OpenWeatherMapModel
-import com.nmincuzzi.ipweather.domain.Weather
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
@@ -22,16 +20,14 @@ import java.net.URL
 @Component
 class OpenWeatherMapAdapter(
     private val restTemplate: RestTemplate,
-    @Value("\${openstackmap.url}") private val host: String,
+    @Value("\${openstackmap.url}") private val url: String,
     @Value("\${openstackmap.app_id}") private val appId: String
 ) {
 
     private val log: Logger = LoggerFactory.getLogger(OpenWeatherMapAdapter::class.java)
 
     fun execute(city: String): OpenWeatherMapModel {
-        val url = "$host?q=$city&appid=$appId&units=metric"
-        val entity = buildHttpEntity()
-        val response = restTemplate.exchange(url, GET, entity, ObjectNode::class.java)
+        val response = restTemplate.exchange(buildURI(city), GET, buildHttpEntity(), ObjectNode::class.java)
         log.info("Response of OpenWeatherMap service city: {} response: {}", city, response.body)
 
         if (response.statusCode.is2xxSuccessful && response.body != null) {
@@ -55,7 +51,7 @@ class OpenWeatherMapAdapter(
 
     private fun buildURI(city: String): URI {
         return try {
-            val url = URL(host)
+            val url = URL(url)
 
             val uriComponentsBuilder = UriComponentsBuilder.newInstance()
                 .scheme(url.protocol)

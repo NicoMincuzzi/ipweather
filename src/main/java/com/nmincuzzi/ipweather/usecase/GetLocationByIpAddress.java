@@ -5,7 +5,7 @@ import com.nmincuzzi.ipweather.infrastructure.IpStackAdapter;
 import com.nmincuzzi.ipweather.infrastructure.LocationResponse;
 import org.springframework.stereotype.Component;
 
-import static com.nmincuzzi.ipweather.infrastructure.ConverterKt.toLocationRepresentation;
+import static com.nmincuzzi.ipweather.domain.ConverterKt.toLocationRepresentation;
 
 @Component
 public class GetLocationByIpAddress {
