@@ -1,5 +1,6 @@
 package com.nmincuzzi.ipweather.usecase;
 
+import com.nmincuzzi.ipweather.domain.GuestIpAddress;
 import com.nmincuzzi.ipweather.domain.Locale;
 import com.nmincuzzi.ipweather.infrastructure.IpStackAdapter;
 import com.nmincuzzi.ipweather.infrastructure.LocationResponse;
@@ -15,9 +16,9 @@ public class GetLocationByIpAddress {
         this.ipStackAdapter = ipStackAdapter;
     }
 
-    public LocationResponse execute(String ipAddress) {
+    public LocationResponse execute(GuestIpAddress guestIpAddress) {
         try {
-            Locale locale = ipStackAdapter.execute(ipAddress);
+            Locale locale = ipStackAdapter.execute(guestIpAddress);
             return toLocationRepresentation(locale);
         } catch (Exception e) {
             throw new RuntimeException(e);

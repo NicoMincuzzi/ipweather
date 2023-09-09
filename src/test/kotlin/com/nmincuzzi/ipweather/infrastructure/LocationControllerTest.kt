@@ -1,7 +1,8 @@
 package com.nmincuzzi.ipweather.infrastructure
 
-import com.nmincuzzi.ipweather.usecase.GetLocationByIpAddress
 import com.nmincuzzi.ipweather.builders.LocationRepresentationBuilder
+import com.nmincuzzi.ipweather.domain.GuestIpAddress.*
+import com.nmincuzzi.ipweather.usecase.GetLocationByIpAddress
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
@@ -22,15 +23,13 @@ class LocationControllerTest {
 
     @Test
     fun retrieveCityGivenAIpAddress() {
-        val location = LocationRepresentationBuilder().city("Milan").build()
-        every { locationService.execute("0.0.0.0") } returns location
-        val locationController = LocationController(locationService)
+        val ipAddress = fromHeader("0.0.0.0, 1.1.1.1")
+        every { locationService.execute(ipAddress) } returns LocationRepresentationBuilder().city("Milan").build()
         val httpServletRequest = MockHttpServletRequest()
         httpServletRequest.addHeader("X-FORWARDED-FOR", "0.0.0.0, 1.1.1.1")
 
-        val result = locationController.location(httpServletRequest)
+        val result = LocationController(locationService).location(httpServletRequest)
 
         assertEquals("Milan", result.city)
     }
-
 }

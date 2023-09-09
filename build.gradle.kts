@@ -5,7 +5,7 @@ plugins {
     id("io.spring.dependency-management") version "1.1.0"
     kotlin("jvm") version "1.8.10"
     kotlin("plugin.spring") version "1.8.10"
-    id ("org.jetbrains.kotlin.plugin.jpa") version "1.8.10"
+    id("org.jetbrains.kotlin.plugin.jpa") version "1.8.10"
     jacoco
 }
 
@@ -27,8 +27,6 @@ dependencies {
 
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.8.10")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.8.10")
-
-    implementation("org.projectlombok:lombok:1.18.24")
 
     implementation("org.springdoc:springdoc-openapi-ui:1.6.9")
 

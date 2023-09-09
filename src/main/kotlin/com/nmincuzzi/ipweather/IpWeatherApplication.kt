@@ -6,7 +6,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-@OpenAPIDefinition(info = Info(title = "IP Weather API", version = "1.0", description = "Documentation about IP Weather endpoints."))
+@OpenAPIDefinition(
+    info = Info(
+        title = "IP Weather API",
+        version = "1.0",
+        description = "Documentation about IP Weather endpoints."
+    )
+)
 class IpWeatherApplication
 
 fun main(args: Array<String>) {

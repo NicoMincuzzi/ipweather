@@ -1,6 +1,7 @@
 package com.nmincuzzi.ipweather.infrastructure;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.nmincuzzi.ipweather.domain.GuestIpAddress;
 import com.nmincuzzi.ipweather.domain.Locale;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +18,6 @@ import static com.nmincuzzi.ipweather.domain.Locale.to;
 
 @Component
 public class IpStackAdapter {
-
     private final Logger log = LoggerFactory.getLogger(IpStackAdapter.class);
 
     private final RestTemplate restTemplate;
@@ -32,9 +32,9 @@ public class IpStackAdapter {
         this.accessKey = accessKey;
     }
 
-    public Locale execute(String ipAddress) {
-        ResponseEntity<ObjectNode> response = restTemplate.getForEntity(buildURI(ipAddress), ObjectNode.class);
-        log.info("Response of IpStack service ip_address: {} response: {}", ipAddress, response.getBody());
+    public Locale execute(GuestIpAddress guestIpAddress) {
+        ResponseEntity<ObjectNode> response = restTemplate.getForEntity(buildURI(guestIpAddress.value()), ObjectNode.class);
+        log.info("Response of IpStack service ip_address: {} response: {}", guestIpAddress, response.getBody());
 
         if (response.getStatusCode().is2xxSuccessful() && response.getBody() != null) {
             return to(response.getBody());
